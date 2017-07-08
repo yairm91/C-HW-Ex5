@@ -7,10 +7,10 @@ namespace Ex05.UI
     {
         private const int k_ButtonHeightAndWidth = 50;
 
-        public ColorButton(Color buttonColor) : base()
+        public ColorButton(Color i_ButtonColor) : base()
         {
             Size = new Size(k_ButtonHeightAndWidth, k_ButtonHeightAndWidth);
-            BackColor = buttonColor;
+            BackColor = i_ButtonColor;
         }
     }
 }

@@ -9,16 +9,21 @@ namespace Ex05.Controller
     {
         private const char k_CorrectCharacterCorrectPlace = 'V';
         private const int k_IntegerToCharOffset = 65;
+        private const int k_FirstGuessLineIndex = 0;
 
-        public static void Main() {
+        public static void Main()
+        {
             playGame();
         }
 
         private static void playGame()
         {
             OpeningScreen myOpeningScreen = new OpeningScreen();
-            int numberOfGuesses = myOpeningScreen.NumOfChange;
+            myOpeningScreen.ShowDialog();
+            int numberOfGuesses = myOpeningScreen.NumOfChance;
             GameWindow myGameWindow = new GameWindow(numberOfGuesses);
+            myGameWindow.EnableGuessLine(k_FirstGuessLineIndex);
+            myGameWindow.ShowDialog();
         }
 
         private static List<char> translateGuess(List<int> i_GuessFromUI)
@@ -63,15 +68,15 @@ namespace Ex05.Controller
             return translateComputerGuess;
         }
 
-        public List<Color> checkGuess(List<int> i_GuessFromUI)
+        public static List<Color> CheckGuess(List<int> i_GuessFromUI)
         {
             List<char> translatedGuess = translateGuess(i_GuessFromUI);
-            List<char> answerFromLogic = Game.gameRunner(translatedGuess);
+            List<char> answerFromLogic = Game.GameRunner(translatedGuess);
             List<Color> translatedAnswer = translateAnswer(answerFromLogic);
             return translatedAnswer;
         }
 
-        public List<int> getComputerGuess()
+        public static List<int> GetComputerGuess()
         {
             List<int> translatedComputerGuess = translateComputerGuess(Game.m_ComputerGuess);
             return translatedComputerGuess;

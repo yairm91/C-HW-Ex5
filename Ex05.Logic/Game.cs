@@ -1,46 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace Ex02
+namespace Ex05
 {
-    internal class Game
+    public class Game
     {
         private const char k_CorrectCharacterCorrectPlace = 'V';
         private const char k_CorrectCharacterIncorrectPlace = 'X';
         private const int k_CharacterNotFoundInGuess = -1;
         private const string k_WinningGuess = "VVVV";
         internal const int k_MaxLengthOfGuessWords = 4;
-        private List<char> m_ComputerGuess;
-        private bool m_GameInProgress;
+        public static readonly List<char> m_ComputerGuess;
 
-        private Game()
+        static Game()
         {
-            m_GameInProgress = true;
-            setComputerGuess();
-        }
-
-        private static List<char> TranslateGuess(List<int> guessFromUI)
-        {
-            List<char> translatedGuessFromUI = new List<char>();
-            foreach (int colorIndex in guessFromUI)
-            {
-                char tempTranslatedCharacter = (char)(colorIndex + 65);
-                translatedGuessFromUI.Add(tempTranslatedCharacter);
-            }
-
-            return translatedGuessFromUI;
-        }
-
-        internal static string CastCharListToString(List<char> i_CharacterList)
-        {
-            StringBuilder stringFromList = new StringBuilder();
-            foreach (char characterInList in i_CharacterList)
-            {
-                stringFromList.Append(characterInList);
-            }
-
-            return stringFromList.ToString();
+            List<char> computerGuess = createComputerGuess();
+            m_ComputerGuess = computerGuess;
         }
 
         private static List<char> createComputerGuess()
@@ -64,21 +39,14 @@ namespace Ex02
             return computerGuess;
         }
 
-        private static void gameRunner(Game i_MyGame)
+        public static List<char> GameRunner(List<char> i_GuessFromUser)
         {
-           List<char> currentGuess; //toDO in controller
            List<char> answerForTheUser = new List<char>();
-           List<char> answerToTheUser = i_MyGame.checkGuess(currentGuess, out answerForTheUser);
-           //Send Guess to Controller
+           List<char> answerToTheUser = checkGuess(i_GuessFromUser, out answerForTheUser);
+           return answerForTheUser;
         }
 
-        private void setComputerGuess()
-        {
-            List<char> computerGuess = createComputerGuess();
-            m_ComputerGuess = computerGuess;
-        }
-
-        private List<char> checkGuess(List<char> i_CurrentGuess, out List<char> io_AnswerForTheUser)
+        private static List<char> checkGuess(List<char> i_CurrentGuess, out List<char> io_AnswerForTheUser)
         {
             io_AnswerForTheUser = new List<char>();
 
@@ -88,7 +56,7 @@ namespace Ex02
             return io_AnswerForTheUser;
         }
 
-        private void checkCorrectCharacterIncorrectPlaces(List<char> i_CurrentGuess, List<char> io_AnswerForTheUser)
+        private static void checkCorrectCharacterIncorrectPlaces(List<char> i_CurrentGuess, List<char> io_AnswerForTheUser)
         {
             for (int indexOfCharacterInGuess = 0; indexOfCharacterInGuess < k_MaxLengthOfGuessWords; indexOfCharacterInGuess++)
             {
@@ -100,7 +68,7 @@ namespace Ex02
             }
         }
 
-        private void checkCorrectCharactersCorrectPlaces(List<char> i_CurrentGuess, List<char> io_AnswerForTheUser)
+        private static void checkCorrectCharactersCorrectPlaces(List<char> i_CurrentGuess, List<char> io_AnswerForTheUser)
         {
             for (int indexOfCharacterInGuess = 0; indexOfCharacterInGuess < k_MaxLengthOfGuessWords; indexOfCharacterInGuess++)
             {

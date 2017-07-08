@@ -121,12 +121,14 @@ namespace Ex05.UI
 
         public void EnableEnterGuessButton()
         {
-            foreach (ColorButton guessButton in m_GuessButtons)
-            {
-                EnterGuess.Enabled = k_IsButtonEnabled;
-            }
+            EnterGuess.Enabled = k_IsButtonEnabled;
         }
 
+        public void DisableEnterGuessButton()
+        {
+            EnterGuess.Enabled = !k_IsButtonEnabled;
+        }
+        
         public bool CheckIfAllButtonsAreColored()
         {
             bool everyoneColored = true;

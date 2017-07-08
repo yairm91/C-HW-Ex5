@@ -16,6 +16,7 @@ namespace Ex05.UI
         private const int k_NumberOfChancesButtonLocationHeightOffset = 10;
         private const int k_OpeningScreenWidth = 370;
         private const int k_OpeningScreenHeight = 180;
+        private const int k_MaxNumberOfChances = 10;
 
         private Button m_NumOfChancesButton;
 
@@ -23,7 +24,7 @@ namespace Ex05.UI
 
         private int m_NumOfChances;
 
-        public int NumOfChange
+        public int NumOfChance
         {
             get
             {
@@ -51,10 +52,10 @@ namespace Ex05.UI
         {
             base.OnLoad(e);
 
-            InitControls();
+            initControls();
         }
 
-        private void InitControls()
+        private void initControls()
         {
             m_StartGameButton.Text = k_StartButtonName;
             m_StartGameButton.Location = new Point(
@@ -69,20 +70,19 @@ namespace Ex05.UI
 
             Controls.AddRange(new Control[] { m_StartGameButton, m_NumOfChancesButton });
 
-            m_NumOfChancesButton.Click += new EventHandler(m_NumOfChancesButton_Click);
-            m_StartGameButton.Click += new EventHandler(m_StartGameButton_Click);
+            m_NumOfChancesButton.Click += new EventHandler(numOfChancesButton_Click);
+            m_StartGameButton.Click += new EventHandler(startGameButton_Click);
         }
 
-        private void m_StartGameButton_Click(object sender, EventArgs e)
+        private void startGameButton_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void m_NumOfChancesButton_Click(object sender, EventArgs e)
+        private void numOfChancesButton_Click(object sender, EventArgs e)
         {
             int tempNumOfChances = m_NumOfChances + 1;
-            // TODO: Chance this Shite
-            if (tempNumOfChances <= 10)
+            if (tempNumOfChances <= k_MaxNumberOfChances)
             {
                 m_NumOfChances = tempNumOfChances;
                 setNumOfChancesButtonText();

@@ -14,7 +14,7 @@ namespace Ex05.UI
         private const int k_ButtonMargin = 12;
         private const int k_MarginOfButtonFromTop = 15;
         private const int k_MarginBetweenButtonRows = 5;
-        internal static readonly Color[] ColorsOfButtons = { Color.Purple, Color.Red, Color.Green, Color.SkyBlue, Color.Blue, Color.Yellow, Color.SaddleBrown, Color.White };
+        internal static readonly Color[] ColorsOfButtons = { Color.Purple, Color.Red, Color.Green, Color.DeepSkyBlue, Color.Blue, Color.Yellow, Color.SaddleBrown, Color.FloralWhite };
         private int m_ChosenColor = -1;
 
         public int ChosenColor
@@ -31,11 +31,11 @@ namespace Ex05.UI
             StartPosition = FormStartPosition.CenterScreen;
             Text = k_ColorPickerScreenName;
             
-            SetRow(0);
-            SetRow(1);
+            setRow(0);
+            setRow(1);
         }
 
-        private void SetRow(int i_RowOffset)
+        private void setRow(int i_RowOffset)
         {
             int numberOfButtonsInARow = ColorsOfButtons.Length / k_NumberOfRows;
             for (int numberOfButtonInTheRow = 0; numberOfButtonInTheRow < numberOfButtonsInARow; numberOfButtonInTheRow++)
@@ -47,11 +47,11 @@ namespace Ex05.UI
 
                 Controls.Add(newButton);
 
-                newButton.Click += new EventHandler(ColorButton_Click);
+                newButton.Click += new EventHandler(colorButton_Click);
             }
         }
 
-        private void ColorButton_Click(object sender, EventArgs e)
+        private void colorButton_Click(object sender, EventArgs e)
         {
             ColorButton clickedButton = sender as ColorButton;
             m_ChosenColor = Array.IndexOf(ColorsOfButtons, clickedButton.BackColor);
